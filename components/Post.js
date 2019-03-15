@@ -8,6 +8,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import Comment from './posts/Comment';
+import Icon from 'react-native-vector-icons/Feather';
 import * as Api from '../connections/api';
 
 class Post extends React.Component {
@@ -77,6 +78,8 @@ class Post extends React.Component {
         </View>
         <Image source={{ uri: image_url }} style={styles.image} />
         <View style={styles.actionContainer} >
+          <Icon size={26} style={styles.action} name='heart' />
+          <Icon size={26} style={styles.action} name='message-square' />
         </View>
         <View style={styles.comments}>
           <Text style={styles.commentTitle}>{user.first_name} {user.last_name}: {title}</Text>

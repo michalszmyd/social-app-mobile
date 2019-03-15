@@ -6,6 +6,7 @@ import {
   createBottomTabNavigator,
   createDrawerNavigator
 } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Feather';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import MyProfileScreen from '../screens/MyProfileScreen';
@@ -26,21 +27,21 @@ const NavigationStack = createBottomTabNavigator({
   Home: { screen: HomeStack, navigationOptions: {
     tabBarLabel: 'Home',
     titleDisplayMode: 'alwaysHide',
-    // tabBarIcon: ({ tintColor }) => (
-    //   <Feather name='home' color={'gray'} size={26} />
-    // )
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name='home' color={'gray'} size={26} />
+    )
   } },
   MyProfile: { screen: MyProfileStack, navigationOptions: {
     tabBarLabel: 'Profile',
-    // tabBarIcon: ({ tintColor }) => (
-    //   <Feather name='user' color={'gray'} size={26} />
-    // )
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name='user' color={'gray'} size={26} />
+    )
   } },
   NewPostScreen: { screen: NewPostScreen, navigationOptions: {
     tabBarLabel: 'Add',
-    // tabBarIcon: ({ tintColor }) => (
-    //   <Ionicons name='ios-add' color={'gray'} size={26} />
-    // )
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name='plus' color={'gray'} size={26} />
+    )
   } }
 });
 
