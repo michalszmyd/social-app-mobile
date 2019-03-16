@@ -4,6 +4,7 @@ import {
   Text,
   View,
   AsyncStorage,
+  RefreshControl
 } from 'react-native';
 import * as Api from '../connections/api';
 import Post from '../components/Post';
@@ -11,6 +12,7 @@ export default class HomeScreen extends React.Component {
   constructor (props) {
     super(props);
 
+    this._onRefresh = this._onRefresh.bind(this);
     this.getPosts = this.getPosts.bind(this);
   }
 
@@ -50,12 +52,22 @@ export default class HomeScreen extends React.Component {
     });
   }
 
+  _onRefresh () {
+    this.getPosts();
+  }
+
   render () {
     const { error, posts, refreshing } = this.state;
 
     return (
       <View>
-        <ScrollView>
+        <ScrollView
+            refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={this._onRefresh}
+            />
+          }>
           { error ? <Text>{error}</Text> : null }
           { posts.map((post) => (
             <Post key={post.id}

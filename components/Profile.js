@@ -4,7 +4,8 @@ import {
   ScrollView,
   Text,
   AsyncStorage,
-  StyleSheet
+  StyleSheet,
+  RefreshControl
 } from 'react-native';
 import PostPreview from './posts/PostPreview';
 import UserHeader from './profiles/UserHeader';
@@ -15,13 +16,15 @@ class Profile extends React.Component {
     super(props);
 
     this.getPosts = this.getPosts.bind(this);
+    this._onRefresh = this._onRefresh.bind(this);
     this.getPosts();
   }
 
   state = {
     posts: [],
     limit: 12,
-    offset: 0
+    offset: 0,
+    refreshing: false
   }
 
   getPosts () {
@@ -34,19 +37,35 @@ class Profile extends React.Component {
          .then((response) => {
            if (response.status >= 200 && response.status < 400) {
              response.data.then((json) => {
-               this.setState({ posts: json.data });
+               this.setState({ posts: json.data, refreshing: false });
              })
            }
          })
+    }).catch((e) => {
+      this.setState({
+        refreshing: false
+      })
     })
+  }
+
+  _onRefresh () {
+    this.getPosts();
   }
 
   render () {
     const { user } = this.props;
-    const { posts } = this.state;
+    const { posts, refreshing } = this.state;
 
     return (
-      <ScrollView style={styles.mainContainer}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
+        style={styles.mainContainer}>
+
         <UserHeader user={user.attributes} />
         <View>
           <View style={styles.postsFlex}>
