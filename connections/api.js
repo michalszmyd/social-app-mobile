@@ -1,4 +1,4 @@
-const API = 'http://localhost:3000/api/v1';
+const API = 'https://react-native-api-app.herokuapp.com/api/v1';
 
 export const makeGetRequest = (data) => {
   return fetch(`${API}${data.url}`, {

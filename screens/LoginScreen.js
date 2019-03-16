@@ -21,7 +21,15 @@ class LoginScreen extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     AsyncStorage.getItem('token').then((token) => {
-      if (token !== null) this.props.navigation.navigate('Home');
+      if (token !== null) {
+        Api.makeGetTokenRequest({ url: '/profiles/my_profile', token: token }).then((response) => {
+          if (response.status >= 200 && response.status < 400) {
+            this.props.navigation.navigate('Home');
+          } else {
+            AsyncStorage.removeItem('token');
+          }
+        })
+      }
     })
   }
 
