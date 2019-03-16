@@ -25,7 +25,8 @@ class ProfileScreen extends React.Component {
 
   getProfile () {
     AsyncStorage.getItem('token').then((token) => {
-      const id = this.props.navigation.state.params.user_id || null
+      const id = this.props.navigation.state.params.user_id;
+
       Api.makeGetTokenRequest({ url: `/profiles/${id}`, token: token })
          .then((response) => {
            if (response.status >= 200 && response.status < 400) {

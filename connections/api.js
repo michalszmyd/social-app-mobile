@@ -39,9 +39,12 @@ export const makePostRequest = (data) => {
 };
 
 export const makePostTokenRequest = (data) => {
+  const stringify = data.stringify === undefined ? true : data.stringify;
+  const preparedBody = stringify ? JSON.stringify(data.body) : data.body;
+
   return fetch(`${API}${data.url}`, {
     method: 'POST',
-    body: JSON.stringify(data.body),
+    body: preparedBody,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',

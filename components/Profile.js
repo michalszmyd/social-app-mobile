@@ -20,7 +20,7 @@ class Profile extends React.Component {
 
   state = {
     posts: [],
-    limit: 9,
+    limit: 12,
     offset: 0
   }
 

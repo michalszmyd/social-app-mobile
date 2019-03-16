@@ -21,12 +21,17 @@ export default class HomeScreen extends React.Component {
   state = {
     posts: [],
     error: null,
-    refreshing: false
+    refreshing: false,
+    limit: 15,
+    offset: 0
   }
 
   getPosts () {
     AsyncStorage.getItem('token').then((token) => {
-      Api.makeGetTokenRequest({ url: '/posts', token: token })
+      const { limit, offset } = this.state;
+      const url = `/posts?limit=${limit}&offset=${offset}`;
+
+      Api.makeGetTokenRequest({ url: url, token: token })
          .then((response) => {
            if (response.status >= 200 && response.status < 400) {
              response.data.then((json) => (

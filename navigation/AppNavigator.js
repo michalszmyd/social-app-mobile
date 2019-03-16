@@ -31,16 +31,16 @@ const NavigationStack = createBottomTabNavigator({
       <Icon name='home' color={'gray'} size={26} />
     )
   } },
-  MyProfile: { screen: MyProfileStack, navigationOptions: {
-    tabBarLabel: 'Profile',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon name='user' color={'gray'} size={26} />
-    )
-  } },
   NewPostScreen: { screen: NewPostScreen, navigationOptions: {
     tabBarLabel: 'Add',
     tabBarIcon: ({ tintColor }) => (
       <Icon name='plus' color={'gray'} size={26} />
+    )
+  } },
+  MyProfile: { screen: MyProfileStack, navigationOptions: {
+    tabBarLabel: 'Profile',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name='user' color={'gray'} size={26} />
     )
   } }
 });
