@@ -18,6 +18,7 @@ class NewPostScreen extends React.Component {
     super(props);
 
     this.handleChoosePhoto = this.handleChoosePhoto.bind(this);
+    this.handleCamera = this.handleCamera.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onDescriptionChange = this.onDescriptionChange.bind(this);
